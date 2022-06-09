@@ -1,0 +1,9 @@
+matplotlib
+scipy
+opencv-python
+opencv-contrib-python
+scikit-image
+tqdm
+scikit-learn
+mahotas
+pyDOE
