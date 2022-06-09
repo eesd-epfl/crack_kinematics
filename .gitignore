@@ -1,5 +1,4 @@
 *.pyc
 data/
-results/
 .vscode/
 src/paper_examples/
