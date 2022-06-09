@@ -9,7 +9,7 @@ Clone repository in your local machine. All codes related with method are inside
 
 ### 2. Download data
 
-Download data file  from [Data](https://drive.google.com/). Extract the folder `data/` and place it inside the repository folder
+Download data file  from [Data](https://drive.google.com/drive/folders/1OnGo10ccCN_3YiZxk3-ofh-56W0A_l0N?usp=sharing). Extract the folder `data/` and place it inside the repository folder
 
 #### 2a. Repository directory
 
