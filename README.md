@@ -34,14 +34,14 @@ Create a conda environment and install python packages. At the terminal in the r
 
 ### 4. Using method
 
-The main functions of the methodology to compute the crack kinematics of crack patterns using binary mask images are placed in `least_square_crack_kinematics.py`. Test them with the examples provided as follows:
+The main functions of the methodology to compute the crack kinematics of crack patterns using binary mask images are placed in `src/least_square_crack_kinematics.py`. Test them with the examples provided as follows:
 
-`python example_kinematics_pattern.py`
-`python example_kinematics_patch.py`
+`python src/example_kinematics_pattern.py`
+`python src/example_kinematics_patch.py`
 
 ### 5. Creating your own digital twin
 
-The methodology requires as input a binary mask that represents a segmented crack. Create a folder containing the image to be analysed inside the data folder and run the algorithms as shown in the example files `example_kinematics_pattern.py` or `example_kinematics_patch.py`.
+The methodology requires as input a binary mask that represents a segmented crack. Create a folder containing the image to be analysed inside the data folder and run the algorithms as shown in the example files `src/example_kinematics_pattern.py` or `src/example_kinematics_patch.py`.
 
 ### 6. Results
 
