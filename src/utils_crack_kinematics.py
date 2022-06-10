@@ -109,7 +109,7 @@ def get_tn_tt(data_path, mask_name, approach, hyper, mmpx=None):
     print('you clicked:', sk_pt)    
     plt.close()
     sk_pt = sk_pt[0]
-    np.save('../../results/'+data_folder+'sk_pt_'+mask_name+'.npy', sk_pt)
+    np.save('../results/'+data_folder+'sk_pt_'+mask_name+'.npy', sk_pt)
 
     tn_tt_read,_ = get_tn_tt_from_results(im_name, data_folder, sk_pt, approach, hyper)
     if mmpx is not None:

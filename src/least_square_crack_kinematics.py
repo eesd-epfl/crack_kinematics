@@ -59,7 +59,7 @@ def kinematics_full_edges(data_path, mask_name, k_n_normal_feature=10, omega = 2
 
     #Check if output directory exists, if not, create it
     batch_name = data_path.split('/')[-2]
-    dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(k_n_normal_feature,omega)
+    dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(k_n_normal_feature,omega)
     check_dir = os.path.isdir(dir_save)
     if not check_dir:
         os.makedirs(dir_save)
@@ -266,9 +266,9 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
     #Check if output directory exists, if not, create it.
     batch_name = data_path.split('/')[-2]
     if eta is None:
-        dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(k_neighboors, m, l,k_n_normal_feature,omega)
+        dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(k_neighboors, m, l,k_n_normal_feature,omega)
     else:
-        dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(eta, m, l,k_n_normal_feature,omega)
+        dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(eta, m, l,k_n_normal_feature,omega)
     check_dir = os.path.isdir(dir_save)
     if not check_dir:
         os.makedirs(dir_save)       

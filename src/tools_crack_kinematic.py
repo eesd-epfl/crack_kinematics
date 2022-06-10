@@ -144,14 +144,14 @@ def convolve(image, kernel):
     return output
 
 
-def find_dir_nor(mask_name,skeleton, dir_save='../../results', k_n=10, mask=None, plot=False):
+def find_dir_nor(mask_name,skeleton, dir_save='../results', k_n=10, mask=None, plot=False):
     """
     It computes the crack skeleton directions using PCA and nearest neighbors.
 
     Args:
         mask_name (str): Name of binary crack pattern image
         skeleton (array): array with x,y skeeleton image coordinates
-        dir_save (str, optional): Directory where results are saved. Defaults to '../../results'.
+        dir_save (str, optional): Directory where results are saved. Defaults to '../results'.
         k_n (int, optional): Number of neighbors to compute directions. Defaults to 10.
         mask (array, optional): Image with the binary mask of the crack pattern. Defaults to None.
         plot (bool, optional): True to plot the results. Defaults to False.
@@ -320,7 +320,7 @@ def find_skeleton_intersections(skl):
     
     return inters
 
-def plot_edges_kinematic(data_path, mask_name, crack_kinematic, dir_save='../../results/', plt_skeleton = True, local_trans = True):
+def plot_edges_kinematic(data_path, mask_name, crack_kinematic, dir_save='../results/', plt_skeleton = True, local_trans = True):
     """
     Plots edges and skeleton results after kinematics is found
 
@@ -328,7 +328,7 @@ def plot_edges_kinematic(data_path, mask_name, crack_kinematic, dir_save='../../
         data_path (str): Data folder path
         mask_name (str): Name of the image crack pattern
         crack_kinematic (dict): Dictionary with the kinematics results
-        dir_save (str, optional): Output folder path. Defaults to '../../results/'.
+        dir_save (str, optional): Output folder path. Defaults to '../results/'.
         plt_skeleton (bool, optional): True to plot skeleton. Defaults to True.
         local_trans (bool, optional): True to plot local values. Otherwise global are plot. Defaults to True.
     """
@@ -367,7 +367,7 @@ def plot_edges_kinematic(data_path, mask_name, crack_kinematic, dir_save='../../
     plt.close()
             
 
-def plot_kinematic(data_path, mask_name, crack_kinematic, dir_save='../../results/', plot_rotation=True, plot_trans_x=True, plot_trans_y=True, local_trans = True, full_edges=False, abs_disp = False):
+def plot_kinematic(data_path, mask_name, crack_kinematic, dir_save='../results/', plot_rotation=True, plot_trans_x=True, plot_trans_y=True, local_trans = True, full_edges=False, abs_disp = False):
     """
     Plots 3dof kinematic results
 
@@ -375,7 +375,7 @@ def plot_kinematic(data_path, mask_name, crack_kinematic, dir_save='../../result
         data_path (str): Data folder path
         mask_name (str): Name of the image crack pattern
         crack_kinematic (dict): Dictionary with the kinematics results
-        dir_save (str, optional): Output folder path. Defaults to '../../results/'.
+        dir_save (str, optional): Output folder path. Defaults to '../results/'.
         plot_rotation (bool, optional): True to plot rotation variable. Defaults to True.
         plot_trans_x (bool, optional): True to plot x displacement variable. Defaults to True.
         plot_trans_y (bool, optional): True to plot y displacement variable. Defaults to True.
@@ -485,7 +485,7 @@ def plot_kinematic(data_path, mask_name, crack_kinematic, dir_save='../../result
     print("The mean value for rotation, translation_x and translation_y are: ", mean_rot, mean_trans_x, mean_trans_y)
 
 
-def plot_two_dofs_kinematic(data_path, mask_name, crack_kinematic, dir_save='../../results/', plot_trans_x=True, plot_trans_y=True, local_trans = True, abs_disp=False, full_edges=False):
+def plot_two_dofs_kinematic(data_path, mask_name, crack_kinematic, dir_save='../results/', plot_trans_x=True, plot_trans_y=True, local_trans = True, abs_disp=False, full_edges=False):
     """
     Plots 2dof horizontal, vertical kinematic results
 
@@ -493,7 +493,7 @@ def plot_two_dofs_kinematic(data_path, mask_name, crack_kinematic, dir_save='../
         data_path (str): Data folder path
         mask_name (str): Name of the image crack pattern
         crack_kinematic (dict): Dictionary with the kinematics results
-        dir_save (str, optional): Output folder path. Defaults to '../../results/'.
+        dir_save (str, optional): Output folder path. Defaults to '../results/'.
         plot_trans_x (bool, optional): True to plot x displacement variable. Defaults to True.
         plot_trans_y (bool, optional): True to plot y displacement variable. Defaults to True.
         local_trans (bool, optional): True to plot local values. Otherwise global are plot. Defaults to True.
@@ -578,7 +578,7 @@ def plot_two_dofs_kinematic(data_path, mask_name, crack_kinematic, dir_save='../
     print("The mean value 2 dofs for translation_x and translation_y are: ", mean_trans_x, mean_trans_y)
 
 
-def plot_n_t_kinematic(data_path, mask_name, crack_kinematic,dir_save='../../results/', plot_trans_n=True, plot_trans_t=True, plot_trans_t_n = True, local_trans = True, abs_disp=False, full_edges=False, sign_convention = "new", dot_size=None, cmap_=None, resolution=None):
+def plot_n_t_kinematic(data_path, mask_name, crack_kinematic,dir_save='../results/', plot_trans_n=True, plot_trans_t=True, plot_trans_t_n = True, local_trans = True, abs_disp=False, full_edges=False, sign_convention = "new", dot_size=None, cmap_=None, resolution=None):
     """
     Plots 2dof tt (tangential), tn (normal) kinematic results
 
@@ -586,7 +586,7 @@ def plot_n_t_kinematic(data_path, mask_name, crack_kinematic,dir_save='../../res
         data_path (str): Data folder path
         mask_name (str): Name of the image crack pattern
         crack_kinematic (dict): Dictionary with the kinematics results
-        dir_save (str, optional): Output folder path. Defaults to '../../results/'.
+        dir_save (str, optional): Output folder path. Defaults to '../results/'.
         plot_trans_n (bool, optional): True to plot n displacement variable. Defaults to True.
         plot_trans_t (bool, optional): True to plot t displacement variable. Defaults to True.
         plot_trans_t_n (bool, optional): True to plot relation t/n. Defaults to True.
@@ -771,15 +771,15 @@ def get_time_registration(data_path, mask_name, hyper_params, crack_kinematic=No
         batch_name = data_path.split('/')[-2]
         #Path where is saved json file
         if full_edges:
-            #dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(hyper_params[0],hyper_params[1])
-            dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(int(hyper_params[0]),hyper_params[1])
+            #dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(hyper_params[0],hyper_params[1])
+            dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(int(hyper_params[0]),hyper_params[1])
         else:
             if use_eta:
-                #dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2],hyper_params[3],hyper_params[4])
-                dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2], int(hyper_params[3]), hyper_params[4])
+                #dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2],hyper_params[3],hyper_params[4])
+                dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2], int(hyper_params[3]), hyper_params[4])
             else:
-                dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2],hyper_params[3],hyper_params[4])
-                #dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], int(hyper_params[1]), hyper_params[2], int(hyper_params[3]),int(hyper_params[4]))
+                dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2],hyper_params[3],hyper_params[4])
+                #dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], int(hyper_params[1]), hyper_params[2], int(hyper_params[3]),int(hyper_params[4]))
         with open(dir_save+'crack_kinematic.json', 'r') as fp:
             crack_kinematic = json.load(fp)
     
@@ -833,15 +833,15 @@ def compute_kinematic_mean(data_path, mask_name, hyper_params, crack_kinematic=N
         batch_name = data_path.split('/')[-2]
         #Path where is saved json file
         if full_edges:
-            #dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(hyper_params[0],hyper_params[1])
-            dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(int(hyper_params[0]),hyper_params[1])
+            #dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(hyper_params[0],hyper_params[1])
+            dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'full_edges/knnor{}_omega{}/'.format(int(hyper_params[0]),hyper_params[1])
         else:
             if use_eta:
-                #dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2],hyper_params[3],hyper_params[4])
-                dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2], int(hyper_params[3]), hyper_params[4])
+                #dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2],hyper_params[3],hyper_params[4])
+                dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/eta{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2], int(hyper_params[3]), hyper_params[4])
             else:
-                dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2],hyper_params[3],hyper_params[4])
-                #dir_save = '../../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], int(hyper_params[1]), hyper_params[2], int(hyper_params[3]),int(hyper_params[4]))
+                dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], hyper_params[1], hyper_params[2],hyper_params[3],hyper_params[4])
+                #dir_save = '../results/' + batch_name + '/' + mask_name[:-4] + '/' + 'finite_edges/kn{}_m{}_l{}_knnor{}_omega{}/'.format(hyper_params[0], int(hyper_params[1]), hyper_params[2], int(hyper_params[3]),int(hyper_params[4]))
         with open(dir_save+'crack_kinematic.json', 'r') as fp:
             crack_kinematic = json.load(fp)
     
@@ -1007,7 +1007,7 @@ def error_kinematic_batch(data_path, list_k_neighboors=None, list_m=None, list_l
     
     #Reading the hyperparameters used to run the batch kinematics
     if read_hyper_from_results:
-        list_masks_folders = os.listdir('../../results/'+batch_name+'/')
+        list_masks_folders = os.listdir('../results/'+batch_name+'/')
         list_masks_folders = [lmf for lmf in list_masks_folders if not lmf.endswith('.json')]
         list_masks_folders = [lmf for lmf in list_masks_folders if not lmf.endswith('.png')]
         list_masks_folders = [lmf for lmf in list_masks_folders if not lmf.endswith('.pdf')]
@@ -1017,7 +1017,7 @@ def error_kinematic_batch(data_path, list_k_neighboors=None, list_m=None, list_l
                 approach = 'full_edges/'
             else:
                 approach = 'finite_edges/'
-            for hyp in os.listdir('../../results/'+batch_name+'/'+lmn+'/'+approach):
+            for hyp in os.listdir('../results/'+batch_name+'/'+lmn+'/'+approach):
                 list_mask_name.append(lmn+'.png')
                 hyp_split = hyp.split('_')
                 #list_omega.append(float(hyp_split[-1].replace("omega","")))
@@ -1140,13 +1140,13 @@ def error_kinematic_batch(data_path, list_k_neighboors=None, list_m=None, list_l
                                 if m==1:
                                         check_m+=1
         
-    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../../data/toy_examples_re/'
+    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../data/toy_examples_re/'
     
     if full_edges:
-        with open('../../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'w') as fp:
+        with open('../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'w') as fp:
             json.dump(dict_error_kinematic_batch, fp)
     else:
-        with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'w') as fp:
+        with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'w') as fp:
             json.dump(dict_error_kinematic_batch, fp)
 
         
@@ -1161,10 +1161,10 @@ def plot_ablation(data_path, k_n_normal_feature=None, omega=None, full_edges=Fal
         full_edges (bool, optional): True if full edges approach was used. Defaults to False.
     """
     
-    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../../data/toy_examples_re/'
+    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../data/toy_examples_re/'
     
     if full_edges:
-        with open('../../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         data = np.empty(shape=(0,3))
         for key in dict_error_kinematic_batch['two_dofs_unique']:
@@ -1185,8 +1185,8 @@ def plot_ablation(data_path, k_n_normal_feature=None, omega=None, full_edges=Fal
         ax.set_zlabel("$\|error\|$ $[px]$")
         fig.tight_layout()
         plt.show()
-        fig.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_scatter3D.pdf')
-        fig.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_scatter3D.png')
+        fig.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_scatter3D.pdf')
+        fig.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_scatter3D.png')
         
         fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -1198,8 +1198,8 @@ def plot_ablation(data_path, k_n_normal_feature=None, omega=None, full_edges=Fal
         fig.tight_layout()
         plt.show()
         
-        fig.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_scatter2D.pdf')
-        fig.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_scatter2D.png')
+        fig.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_scatter2D.pdf')
+        fig.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_scatter2D.png')
 
         #Was not able to change colormap related with 4th variable .. Surface
         if len(Xs)>2:
@@ -1216,8 +1216,8 @@ def plot_ablation(data_path, k_n_normal_feature=None, omega=None, full_edges=Fal
             fig.tight_layout()
             plt.show()
             
-            fig.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_trisurf3D.pdf')
-            fig.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_trisurf3D.png')
+            fig.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_trisurf3D.pdf')
+            fig.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_trisurf3D.png')
 
         #Best parameters
         best_id = np.where((data[:,2]==np.min(data[:,2])))
@@ -1226,7 +1226,7 @@ def plot_ablation(data_path, k_n_normal_feature=None, omega=None, full_edges=Fal
         print("The best combination of hyperparameters when the full edges are used is k_n_normal_feature: {} , omega: {}. It gives an error of {} [px]".format(best_kn , best_omega , best_error))
     
     else:
-        with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         
         #Fixed k_n_normal_feature and omega according to full edges and plot the error in function of k,m,l
@@ -1261,8 +1261,8 @@ def plot_ablation(data_path, k_n_normal_feature=None, omega=None, full_edges=Fal
         fig.tight_layout()
         plt.show()
 
-        fig.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_knnormal{}_omega{}.pdf'.format(k_n_normal_feature,omega))
-        fig.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_knnormal{}_omega{}.png'.format(k_n_normal_feature,omega))
+        fig.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_knnormal{}_omega{}.pdf'.format(k_n_normal_feature,omega))
+        fig.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_knnormal{}_omega{}.png'.format(k_n_normal_feature,omega))
 
         #Best parameters
         best_id = np.where((data_filtered[:,-1]==np.min(data_filtered[:,-1])))
@@ -1282,10 +1282,10 @@ def plot_pdf(data_path, full_edges=False, use_eta = False):
         use_eta (bool, optional): True if eta is used instead of k_neigh. Defaults to False.
     """
     
-    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../../data/toy_examples_re/'
+    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../data/toy_examples_re/'
     
     if full_edges:
-        with open('../../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         data = np.empty(shape=(0,3))
         for key in dict_error_kinematic_batch['two_dofs_unique']:
@@ -1314,11 +1314,11 @@ def plot_pdf(data_path, full_edges=False, use_eta = False):
         plt.xlim(0,int(max_x1+2))
         plt.show()
         plt.close()
-        fig.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_pdf.pdf')
-        fig.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_pdf.png')
+        fig.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_pdf.pdf')
+        fig.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_pdf.png')
         print("The error mean and standar deviation for the montecarlo sampling experiment is: mean: {} , std: {}. This with a total of {} combinations of hyperparameters".format(np.mean(x1) , np.std(x1), len(x1)))
     else:
-        with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         
         #Fixed k_n_normal_feature and omega according to full edges and plot the error in function of k,m,l        
@@ -1356,8 +1356,8 @@ def plot_pdf(data_path, full_edges=False, use_eta = False):
         plt.xticks(np.arange(0, int(max_x1+2), step=5))
         plt.xlim(0,int(max_x1+2))
         plt.show()
-        fig.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_pdf.pdf')
-        fig.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_pdf.png')
+        fig.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_pdf.pdf')
+        fig.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_pdf.png')
        
         print("The error mean and standar deviation for the montecarlo sampling experiment is: mean: {} , std: {}. This with a total of {} combinations of hyperparameters".format(np.mean(x1) , np.std(x1), len(x1)))
 
@@ -1386,7 +1386,7 @@ def plot_pdf_full(data_paths, full_edges = False, use_eta_list = [False,], label
     for use_eta, labels, batch_name, col in zip(use_eta_list, labels_list, batch_names, colors_list):
         c+=1
         if full_edges:
-            with open('../../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
+            with open('../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
                 dict_error_kinematic_batch = json.load(fp)
             data = np.empty(shape=(0,3))
             for key in dict_error_kinematic_batch['two_dofs_unique']:
@@ -1410,7 +1410,7 @@ def plot_pdf_full(data_paths, full_edges = False, use_eta_list = [False,], label
             print("The error mean and standar deviation for the montecarlo sampling experiment is: mean: {} , std: {}. This with a total of {} combinations of hyperparameters".format(np.mean(x1) , np.std(x1), len(x1)))
         
         else:
-            with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
+            with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
                 dict_error_kinematic_batch = json.load(fp)
             
             data = np.empty(shape=(0,6))
@@ -1448,11 +1448,11 @@ def plot_pdf_full(data_paths, full_edges = False, use_eta_list = [False,], label
     plt.show()
     plt.close()
     if full_edges:
-        fig.savefig('../../results/' + batch_name + '/'+plot_name+'full_edges_error_kinematic_batch_pdf_full.pdf')
-        fig.savefig('../../results/' + batch_name + '/'+plot_name+'full_edges_error_kinematic_batch_pdf_full.png')        
+        fig.savefig('../results/' + batch_name + '/'+plot_name+'full_edges_error_kinematic_batch_pdf_full.pdf')
+        fig.savefig('../results/' + batch_name + '/'+plot_name+'full_edges_error_kinematic_batch_pdf_full.png')        
     else:
-        fig.savefig('../../results/'+plot_name+'finite_edges_error_kinematic_batch_pdf_full.pdf')
-        fig.savefig('../../results/'+plot_name+'finite_edges_error_kinematic_batch_pdf_full.png')
+        fig.savefig('../results/'+plot_name+'finite_edges_error_kinematic_batch_pdf_full.pdf')
+        fig.savefig('../results/'+plot_name+'finite_edges_error_kinematic_batch_pdf_full.png')
 
 
 def plot_pdf_time(data_path, full_edges=False, use_eta = False):
@@ -1465,9 +1465,9 @@ def plot_pdf_time(data_path, full_edges=False, use_eta = False):
         use_eta (bool, optional): True if eta is used instead of k_neigh. Defaults to False.
     """
 
-    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../../data/toy_examples_re/'
+    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../data/toy_examples_re/'
     if full_edges:
-        with open('../../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         data = np.empty(shape=(0,3))
         for key in dict_error_kinematic_batch['two_dofs_unique']:
@@ -1495,13 +1495,13 @@ def plot_pdf_time(data_path, full_edges=False, use_eta = False):
         plt.xlim(0,int(max_x1+2))
         plt.show()
         plt.close()
-        fig.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_pdf.pdf')
-        fig.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_pdf.png')
+        fig.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_pdf.pdf')
+        fig.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_pdf.png')
        
         print("The time mean and standar deviation for the montecarlo sampling experiment is: mean: {} , std: {}. This with a total of {} combinations of hyperparameters".format(np.mean(x1) , np.std(x1), len(x1)))
     
     else:
-        with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         
         data = np.empty(shape=(0,6))
@@ -1539,8 +1539,8 @@ def plot_pdf_time(data_path, full_edges=False, use_eta = False):
         plt.xlim(0,int(max_x1+2))
         plt.show()
         
-        fig.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_pdf.pdf')
-        fig.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_pdf.png')
+        fig.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_pdf.pdf')
+        fig.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_pdf.png')
        
         print("The time mean and standar deviation for the montecarlo sampling experiment is: mean: {} , std: {}. This with a total of {} combinations of hyperparameters".format(np.mean(x1) , np.std(x1), len(x1)))
 
@@ -1568,7 +1568,7 @@ def plot_pdf_time_full(data_paths, full_edges = False, use_eta_list = [False,], 
     for use_eta, labels, batch_name, col in zip(use_eta_list, labels_list, batch_names, colors_list):
         c+=1
         if full_edges:
-            with open('../../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
+            with open('../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
                 dict_error_kinematic_batch = json.load(fp)
             data = np.empty(shape=(0,3))
             for key in dict_error_kinematic_batch['two_dofs_unique']:
@@ -1592,7 +1592,7 @@ def plot_pdf_time_full(data_paths, full_edges = False, use_eta_list = [False,], 
             print("The time mean and standar deviation for the montecarlo sampling experiment is: mean: {} , std: {}. This with a total of {} combinations of hyperparameters".format(np.mean(x1) , np.std(x1), len(x1)))
             
         else:
-            with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
+            with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
                 dict_error_kinematic_batch = json.load(fp)
             
             data = np.empty(shape=(0,6))
@@ -1629,12 +1629,12 @@ def plot_pdf_time_full(data_paths, full_edges = False, use_eta_list = [False,], 
     plt.show()
     plt.close()
     if full_edges:
-        fig.savefig('../../results/' + batch_name + '/'+plot_name+'full_edges_time_kinematic_batch_pdf_full.pdf')
-        fig.savefig('../../results/' + batch_name + '/'+plot_name+'full_edges_time_kinematic_batch_pdf_full.png')        
+        fig.savefig('../results/' + batch_name + '/'+plot_name+'full_edges_time_kinematic_batch_pdf_full.pdf')
+        fig.savefig('../results/' + batch_name + '/'+plot_name+'full_edges_time_kinematic_batch_pdf_full.png')        
         
     else:
-        fig.savefig('../../results/'+plot_name+'finite_edges_kinematic_time_pdf_full.pdf')
-        fig.savefig('../../results/'+plot_name+'finite_edges_kinematic_time_pdf_full.png')
+        fig.savefig('../results/'+plot_name+'finite_edges_kinematic_time_pdf_full.pdf')
+        fig.savefig('../results/'+plot_name+'finite_edges_kinematic_time_pdf_full.png')
         
 def plot_hypers_error(data_path, full_edges=False, use_eta=False):
     """
@@ -1646,10 +1646,10 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         use_eta (bool, optional): True if eta is used instead of k_neigh. Defaults to False.
     """
     
-    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../../data/toy_examples_re/'
+    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../data/toy_examples_re/'
     
     if full_edges:
-        with open('../../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         data = np.empty(shape=(0,3))
         for key in dict_error_kinematic_batch['two_dofs_unique']:
@@ -1690,8 +1690,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_knn.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_knn.png')  
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_knn.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_knn.png')  
         plt.close()
     
         #plot error vs omega
@@ -1701,8 +1701,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()         
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_omega.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_omega.png')    
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_omega.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_omega.png')    
         plt.close()
         
         #Plot mean, std and cv for hyperparameters error
@@ -1715,8 +1715,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_mean.png')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_mean.png')
         
         plt.figure()
         plt.plot(Xs_unique, Xs_std, 'g.')
@@ -1725,8 +1725,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_std.png')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_std.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_std.png')
         
         plt.figure()
         plt.plot(Xs_unique, Xs_std/Xs_mean, 'r.')
@@ -1735,8 +1735,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $\|error\|$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_cv.png') 
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_kn_cv.png') 
         
         
         #k_n#########
@@ -1746,8 +1746,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_mean.png')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_mean.png')
         
         plt.figure()
         plt.plot(Ys_unique, Ys_std, 'g.')
@@ -1756,8 +1756,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_std.png')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_std.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_std.png')
         
         plt.figure()
         plt.plot(Ys_unique, Ys_std/Ys_mean, 'r.')
@@ -1766,11 +1766,11 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $\|error\|$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_cv.png') 
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_error_kinematic_batch_omega_cv.png') 
         
     else:
-        with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         
         data = np.empty(shape=(0,6))
@@ -1857,11 +1857,11 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         plt.show()
         if use_eta:        
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta.png') 
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta.png') 
         else:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_k.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_k.png') 
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_k.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_k.png') 
 
         #plot error vs mu
         plt.figure()
@@ -1870,8 +1870,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu.png')    
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu.png')    
     
         #plot error vs lambda
         plt.figure()
@@ -1880,8 +1880,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()       
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda.png')  
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda.png')  
 
         #plot error vs knn
         plt.figure()
@@ -1890,8 +1890,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()         
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_knn.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_knn.png')    
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_knn.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_knn.png')    
     
         #plot error vs omega
         plt.figure()
@@ -1900,8 +1900,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega.png')  
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega.png')  
         
         #Mean, std and coef of variance plots###############3
         #K########
@@ -1916,11 +1916,11 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         plt.show()  
         if use_eta:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_mean.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_mean.png')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_mean.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_mean.png')
         else:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_mean.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_mean.png')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_mean.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_mean.png')
         
         plt.figure()
         plt.plot(Us_unique, Us_std, 'g.')
@@ -1933,11 +1933,11 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         plt.show()        
         if use_eta:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_std.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_std.png')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_std.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_std.png')
         else:
-             plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_std.pdf')
-             plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_std.png')
+             plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_std.pdf')
+             plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_std.png')
         
         plt.figure()
         plt.plot(Us_unique, Us_std/Us_mean, 'r.')
@@ -1950,11 +1950,11 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         plt.show()        
         if use_eta:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_cv.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_cv.png')  
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_cv.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_eta_cv.png')  
         else:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_cv.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_cv.png')  
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_cv.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_k_cv.png')  
         
         #Mu#########
         plt.figure()
@@ -1964,8 +1964,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $\|error\|$ $[px]$")           
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_mean.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_mean.png')
         
         plt.figure()
         plt.plot(Vs_unique, Vs_std, 'g.')
@@ -1974,8 +1974,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_std.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_std.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_std.png')
         
         plt.figure()
         plt.plot(Vs_unique, Vs_std/Vs_mean, 'r.')
@@ -1984,8 +1984,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $\|error\|$")         
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_cv.png')  
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_mu_cv.png')  
         
         #lambda#########
         plt.figure()
@@ -1995,8 +1995,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $\|error\|$ $[px]$")         
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_mean.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_mean.png')
         
         plt.figure()
         plt.plot(Ws_unique, Ws_std, 'g.')
@@ -2005,8 +2005,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $\|error\|$ $[px]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_std.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_std.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_std.png')
         
         plt.figure()
         plt.plot(Ws_unique, Ws_std/Ws_mean, 'r.')
@@ -2015,8 +2015,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $\|error\|$")             
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_cv.png') 
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_lambda_cv.png') 
         
         
         #k_n#########
@@ -2027,8 +2027,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $\|error\|$ $[px]$")            
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_mean.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_mean.png')
         
         plt.figure()
         plt.plot(Xs_unique, Xs_std, 'g.')
@@ -2037,8 +2037,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $\|error\|$ $[px]$")          
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_std.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_std.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_std.png')
         
         plt.figure()
         plt.plot(Xs_unique, Xs_std/Xs_mean, 'r.')
@@ -2047,8 +2047,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $\|error\|$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_cv.png') 
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_kn_cv.png') 
         
         
         #k_n#########
@@ -2058,8 +2058,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $\|error\|$ $[px]$")            
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_mean.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_mean.png')
         
         plt.figure()
         plt.plot(Ys_unique, Ys_std, 'g.')
@@ -2068,8 +2068,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $\|error\|$ $[px]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_std.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_std.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_std.png')
         
         plt.figure()
         plt.plot(Ys_unique, Ys_std/Ys_mean, 'r.')
@@ -2078,8 +2078,8 @@ def plot_hypers_error(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $\|error\|$")         
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_cv.png') 
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_error_kinematic_batch_omega_cv.png') 
 
 
 def plot_hypers_error_full(data_paths, use_eta_list=[False,], parameter = 'k', labels_list = ['',], colors_list = ['#1f77b4',], var = 'error', plot_name=''):
@@ -2109,7 +2109,7 @@ def plot_hypers_error_full(data_paths, use_eta_list=[False,], parameter = 'k', l
     for use_eta, labels, batch_name, col in zip(use_eta_list, labels_list, batch_names, colors_list):
         c+=1
         print(batch_name)
-        with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         
         data = np.empty(shape=(0,6))
@@ -2209,23 +2209,23 @@ def plot_hypers_error_full(data_paths, use_eta_list=[False,], parameter = 'k', l
     if parameter=='k':
         plt.xlabel("$k$", fontsize=10)
         plt.tight_layout()
-        plt.savefig('../../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_k_mean_full_scenarios.pdf')
-        plt.savefig('../../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_k_mean_full_scenarios.png')
+        plt.savefig('../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_k_mean_full_scenarios.pdf')
+        plt.savefig('../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_k_mean_full_scenarios.png')
     elif parameter=='eta':
         plt.xlabel("$\eta$", fontsize=10)
         plt.tight_layout()
-        plt.savefig('../../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_eta_mean_full_scenarios.pdf')
-        plt.savefig('../../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_eta_mean_full_scenarios.png')
+        plt.savefig('../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_eta_mean_full_scenarios.pdf')
+        plt.savefig('../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_eta_mean_full_scenarios.png')
     elif parameter=='mu':
         plt.xlabel("$\mu$", fontsize=10)
         plt.tight_layout()
-        plt.savefig('../../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_mu_mean_full_scenarios.pdf')
-        plt.savefig('../../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_mu_mean_full_scenarios.png')
+        plt.savefig('../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_mu_mean_full_scenarios.pdf')
+        plt.savefig('../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_mu_mean_full_scenarios.png')
     elif parameter=='lambda':
         plt.xlabel("$\lambda$", fontsize=10)
         plt.tight_layout()
-        plt.savefig('../../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_lambda_mean_full_scenarios.pdf')
-        plt.savefig('../../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_lambda_mean_full_scenarios.png')
+        plt.savefig('../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_lambda_mean_full_scenarios.pdf')
+        plt.savefig('../results/'+plot_name+'finite_edges_'+var+'_kinematic_batch_lambda_mean_full_scenarios.png')
 
 
 
@@ -2238,10 +2238,10 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         full_edges (bool, optional): True if full edges approach is applied. Defaults to False.
         use_eta (bool, optional): True if eta is used instead of k_neigh. Defaults to False.
     """    
-    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../../data/toy_examples_re/'
+    batch_name = data_path.split('/')[-2] #data_path has to finish in '/'; e.g.'../data/toy_examples_re/'
     
     if full_edges:
-        with open('../../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/full_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         data = np.empty(shape=(0,3))
         for key in dict_error_kinematic_batch['two_dofs_unique']:
@@ -2285,8 +2285,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$registration$ $time$  $[s]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_knn.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_knn.png')  
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_knn.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_knn.png')  
         plt.close()
     
         #plot error vs omega
@@ -2296,8 +2296,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$registration$ $time$  $[s]$")       
         plt.tight_layout()
         plt.show()         
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_omega.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_omega.png')    
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_omega.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_omega.png')    
         plt.close()
         
         #Plot mean, std and cv for hyperparameters error
@@ -2309,8 +2309,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $registration$ $time$ $[s]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_mean.png')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_mean.png')
         
         plt.figure()
         plt.plot(Xs_unique, Xs_std, 'g.')
@@ -2319,8 +2319,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $registration$ $time$ $[s]$")              
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_std.png')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_std.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_std.png')
         
         plt.figure()
         plt.plot(Xs_unique, Xs_std/Xs_mean, 'r.')
@@ -2329,8 +2329,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $registration$ $time$ $[s]$")              
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_cv.png') 
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_kn_cv.png') 
         
         #k_n#########
         plt.figure()
@@ -2339,8 +2339,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_mean.png')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_mean.png')
         
         plt.figure()
         plt.plot(Ys_unique, Ys_std, 'g.')
@@ -2349,8 +2349,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $registration$ $time$ $[s]$")              
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_std.png')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_std.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_std.png')
         
         plt.figure()
         plt.plot(Ys_unique, Ys_std/Ys_mean, 'r.')
@@ -2359,11 +2359,11 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_cv.png') 
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/full_edges_time_kinematic_batch_omega_cv.png') 
         
     else:
-        with open('../../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
+        with open('../results/' + batch_name + '/finite_edges_error_kinematic_batch.json', 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         
         data = np.empty(shape=(0,6))
@@ -2450,11 +2450,11 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         plt.show()
         if use_eta:        
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta.png') 
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta.png') 
         else:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_k.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_k.png') 
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_k.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_k.png') 
 
 
         #plot error vs mu
@@ -2464,8 +2464,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$registration$ $time$  $[s]$")       
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu.png')    
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu.png')    
     
         #plot error vs lambda
         plt.figure()
@@ -2474,8 +2474,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$registration$ $time$  $[s]$")       
         plt.tight_layout()
         plt.show()       
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda.png')  
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda.png')  
 
         #plot error vs knn
         plt.figure()
@@ -2484,8 +2484,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$registration$ $time$  $[s]$")       
         plt.tight_layout()
         plt.show()         
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_knn.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_knn.png')    
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_knn.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_knn.png')    
     
         #plot error vs omega
         plt.figure()
@@ -2494,8 +2494,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$registration$ $time$  $[s]$")         
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega.png')  
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega.png')  
         
         #Mean, std and coef of variance plots###############3
         
@@ -2511,11 +2511,11 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         plt.show()  
         if use_eta:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_mean.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_mean.png')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_mean.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_mean.png')
         else:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_mean.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_mean.png')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_mean.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_mean.png')
         
         plt.figure()
         plt.plot(Us_unique, Us_std, 'g.')
@@ -2528,11 +2528,11 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         plt.show()        
         if use_eta:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_std.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_std.png')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_std.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_std.png')
         else:
-             plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_std.pdf')
-             plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_std.png')
+             plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_std.pdf')
+             plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_std.png')
         
         plt.figure()
         plt.plot(Us_unique, Us_std/Us_mean, 'r.')
@@ -2545,11 +2545,11 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         plt.show()        
         if use_eta:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_cv.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_cv.png')  
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_cv.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_eta_cv.png')  
         else:
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_cv.pdf')
-            plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_cv.png')  
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_cv.pdf')
+            plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_k_cv.png')  
         
         #Mu#########
         plt.figure()
@@ -2559,8 +2559,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_mean.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_mean.png')
         
         plt.figure()
         plt.plot(Vs_unique, Vs_std, 'g.')
@@ -2569,8 +2569,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_std.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_std.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_std.png')
         
         plt.figure()
         plt.plot(Vs_unique, Vs_std/Vs_mean, 'r.')
@@ -2579,8 +2579,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $registration$ $time$ $[s]$")          
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_cv.png')  
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_mu_cv.png')  
         
         #lambda#########
         plt.figure()
@@ -2590,8 +2590,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_mean.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_mean.png')
         
         plt.figure()
         plt.plot(Ws_unique, Ws_std, 'g.')
@@ -2600,8 +2600,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_std.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_std.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_std.png')
         
         plt.figure()
         plt.plot(Ws_unique, Ws_std/Ws_mean, 'r.')
@@ -2610,8 +2610,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $registration$ $time$ $[s]$")          
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_cv.png') 
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_lambda_cv.png') 
         
         #k_n#########
         plt.figure()
@@ -2621,8 +2621,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$mean$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_mean.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_mean.png')
         
         plt.figure()
         plt.plot(Xs_unique, Xs_std, 'g.')
@@ -2631,8 +2631,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_std.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_std.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_std.png')
         
         plt.figure()
         plt.plot(Xs_unique, Xs_std/Xs_mean, 'r.')
@@ -2641,8 +2641,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $registration$ $time$ $[s]$")          
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_cv.png') 
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_kn_cv.png') 
         
         #k_n#########
         plt.figure()
@@ -2653,8 +2653,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.tight_layout()
         #plt.xlim(0,0.1)
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_mean.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_mean.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_mean.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_mean.png')
         
         plt.figure()
         plt.plot(Ys_unique, Ys_std, 'g.')
@@ -2663,8 +2663,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$std$ $registration$ $time$ $[s]$")        
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_std.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_std.png')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_std.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_std.png')
         
         plt.figure()
         plt.plot(Ys_unique, Ys_std/Ys_mean, 'r.')
@@ -2673,8 +2673,8 @@ def plot_hypers_time(data_path, full_edges=False, use_eta=False):
         plt.ylabel("$cv$ $registration$ $time$ $[s]$")          
         plt.tight_layout()
         plt.show()        
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_cv.pdf')
-        plt.savefig('../../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_cv.png') 
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_cv.pdf')
+        plt.savefig('../results/' + batch_name + '/finite_edges_time_kinematic_batch_omega_cv.png') 
 
 
 def crop_patch(data_path, mask_name, sk_pt = None, size=(256,256), return_patch=False):
@@ -2737,11 +2737,11 @@ def get_tn_tt_from_results(im_name, data_folder, sk_pt, approach, hyper):
     """
     
     if approach=='finite_edges':
-        with open('../../results/' + data_folder + im_name + '/' + approach + '/eta{}_m{}_l{}_knnor{}_omega{}/crack_kinematic.json'.format(hyper[0],hyper[1],hyper[2],hyper[3],hyper[4]), 'r') as fp:
+        with open('../results/' + data_folder + im_name + '/' + approach + '/eta{}_m{}_l{}_knnor{}_omega{}/crack_kinematic.json'.format(hyper[0],hyper[1],hyper[2],hyper[3],hyper[4]), 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         key_kin = 'kinematics_n_t_loc'
     else:
-        with open('../../results/' + data_folder + im_name + '/' + approach + '/knnor{}_omega{}/crack_kinematic.json'.format(hyper[0],hyper[1]), 'r') as fp:
+        with open('../results/' + data_folder + im_name + '/' + approach + '/knnor{}_omega{}/crack_kinematic.json'.format(hyper[0],hyper[1]), 'r') as fp:
             dict_error_kinematic_batch = json.load(fp)
         key_kin = 'kinematics_n_t'
     
