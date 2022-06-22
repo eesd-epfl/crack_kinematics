@@ -101,3 +101,40 @@ The results will be saved inside `results` folder with the same name of the fold
 ### 7. Paper experiments
 
 The scripts used to run the experiments presented in the paper can be found inside the folder `paper_examples`
+
+### 8. Citation
+
+We kindly ask you to cite us if you use this project, dataset or article as reference.
+
+Paper:
+```
+@article{Pantoja-Rosero2020c,
+title = {Determining crack kinematics from imaged crack patterns},
+journal = {Construction and Building Materials},
+volume = {343},
+pages = {128054},
+year = {2022},
+issn = {0950-0618},
+doi = {https://doi.org/10.1016/j.conbuildmat.2022.128054},
+url = {https://www.sciencedirect.com/science/article/pii/S0950061822017202},
+author = {B.G. Pantoja-Rosero and K.R.M. {dos Santos} and R. Achanta and A. Rezaie and K. Beyer},
+}
+```
+Dataset:
+```
+@dataset{Pantoja-Rosero2020c-ds,
+  author       = {Pantoja-Rosero Bryan German and
+                  Dos Santos Ketson and
+                  Achanta Radhakrishna and
+                  Rezaie Amir and
+                  Beyer Katrin},
+  title        = {{Dataset for determining crack kinematics from 
+                   imaged crack patterns}},
+  month        = jun,
+  year         = 2022,
+  publisher    = {Zenodo},
+  version      = {v0.0},
+  doi          = {10.5281/zenodo.6632071},
+  url          = {https://doi.org/10.5281/zenodo.6632071}
+}
+```
