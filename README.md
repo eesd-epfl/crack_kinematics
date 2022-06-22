@@ -1,5 +1,5 @@
 # Crack Kinematics
-This repository contains the codes for computing crack kinematics using a binary mask that represents a segmented crack. The methodoly hereby implementes was presented in the paper ["Determing crack kinematics from imaged crack patterns"](https://link-url-here.org) by Pantoja-Rosero et., al.
+This repository contains the codes for computing crack kinematics using a binary mask that represents a segmented crack. The methodoly hereby implementes was presented in the paper ["Determing crack kinematics from imaged crack patterns"](https://doi.org/10.1016/j.conbuildmat.2022.128054) by Pantoja-Rosero et., al.
 
 ## How to use it?
 
