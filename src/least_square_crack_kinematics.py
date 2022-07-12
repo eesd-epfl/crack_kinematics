@@ -16,6 +16,7 @@ by Pantoja-Rosero et., al.
 """
 
 from __future__ import print_function
+from traceback import print_last
 import numpy as np
 import matplotlib.pyplot as plt
 import time
@@ -228,7 +229,7 @@ def kinematics_full_edges(data_path, mask_name, k_n_normal_feature=10, omega = 2
     return crack_kinematic
 
 
-def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_normal_feature=10, omega = 2, edges=False, normals=False, make_plots_local=False, make_plots_global = False, ignore_global = True, monte_carlo=False, pareto=False, eta = None, cmap_=None, resolution=None):
+def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_normal_feature=10, omega = 2, edges=False, normals=False, make_plots_local=False, make_plots_global = False, ignore_global = True, monte_carlo=False, pareto=False, eta = None, cmap_=None, resolution=None, window_overlap=None):
     """ 
     It computes the crack kinematic when it is given a binary mask that represents the segmentation
     of a crack pattern. This function starts detecting crack contours and then using the junction/endpoints 
@@ -254,6 +255,7 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
         eta (float, optional): Parameter that defines the lenght of the edge 0 as k=len(contour_segment)/eta. Defaults to None.
         cmap_ (str, optional): Colormap to plot output figures. Defaults to None.
         resolution (float, optional): mm/px resolution ratio to compute output in mm. Defaults to None.
+        window_overlap (int, optional): quantity of pixels that a new skeleton point needs to be away to get kinematics computed. If the distance is lower than last skeleton point, the kinematics is copied.
 
     Returns:
         crack_kinematic (dict): Dictionary containing the kinematic values for 3dof, 2dof, and tn-tt for each skeleton pixel of the crack pattern
@@ -486,8 +488,32 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
     counter = 0
     pbar = tqdm(total=len(ind_skl[1]))
     #Looping through the skeleton points (x,y) and computing the kinematics for the related finite edge segments
+    last_x, last_y = np.inf, np.inf
     for x,y in zip(ind_skl[1],ind_skl[0]):
         t0i = time.time() #initial time iteration i
+
+        #If window overlaping is given, check if the pixel is further than the window_overlap. If so, compute kinematic. If not, copy last computed results
+        if window_overlap is not None:
+            #distance to the last sk pt where kinematic was computed
+            dist_last_xy = ((last_x-x)**2 + (last_y-y)**2)**.5
+            if dist_last_xy < window_overlap:
+                
+                if not ignore_global:
+                    H_params_crack_region.append([[float(x),float(y)], [float(x),float(y)], H_params_crack_region_])
+                    crack_edge_transf = np.concatenate((crack_edge_transf, crack_edge_transf_))
+                    two_dofs_global.append([[float(x),float(y)],[float(x),float(y)], two_dofs_global_])                    
+
+                crack_skl_global = np.concatenate((crack_skl_global, np.array([[x,y]])))
+                H_params_crack_region_loc.append([[float(x),float(y)], [float(x),float(y)], H_params_crack_region_loc_])
+                crack_edge_transf_loc = np.concatenate((crack_edge_transf_loc, crack_edge_transf_loc_))
+                two_dofs_local.append([[float(x),float(y)],[float(x),float(y)], two_dofs_local_])
+                crack_class.append([[float(x),float(y)], crack_class_])
+
+                tfi = time.time()        
+                time_iteration.append([[float(x),float(y)],[float(x),float(y)], tfi-t0i])
+                pbar.update()
+                continue
+        
         #If monte_carlo is true, just sample randomly one point and break the loop.
         if monte_carlo:
             sample = np.random.randint(0, len(ind_skl[1]))
@@ -579,9 +605,13 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
         #if it is class 1, change the sign. if it is class 2, keep the sign. This is because initial convention (check initial paper draft)        
         #Defining class
         if angle_edge0<0: #Acending, class 1. Descending, class 2.
-            crack_class.append([[float(x),float(y)], 1])
+            crack_class_ = 1
+            crack_class.append([[float(x),float(y)], crack_class_])
+            #crack_class.append([[float(x),float(y)], 1])
         else:
-            crack_class.append([[float(x),float(y)], 2])
+            crack_class_ = 2
+            crack_class.append([[float(x),float(y)], crack_class_])
+            #crack_class.append([[float(x),float(y)], 2])
         
         #Finding the m*k-neighboors for set_crack_edge_1
         mk_neighboors = int(m*k_neighboors) if m*k_neighboors+1 < len(set_crack_edge_1) else len(set_crack_edge_1)
@@ -607,6 +637,7 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
             
         #Concatenate skeleton for crack region in global coordinates
         crack_skl_global = np.concatenate((crack_skl_global, np.array([[x,y]])))
+        #crack_skl_global = np.concatenate((crack_skl_global, np.array([[x,y]])))
 
         #By default computations using global coordinates are ignored. If required, H also is computed using those coordinates.
         if not ignore_global:
@@ -621,14 +652,20 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
             set_crack_edge_0_op  = set_crack_edge_0_op[:2].T
             
             #Concatenate transformed edge 0 (select just the transformation of the closest point to the x,y)
-            crack_edge_transf = np.concatenate((crack_edge_transf, set_crack_edge_0_op[0].reshape(-1,2)))
+            crack_edge_transf_ = set_crack_edge_0_op[0].reshape(-1,2)
+            crack_edge_transf = np.concatenate((crack_edge_transf, crack_edge_transf_))
+            #crack_edge_transf = np.concatenate((crack_edge_transf, set_crack_edge_0_op[0].reshape(-1,2)))
             
             #Append H_params for point x,y in skeleton in the region [(local coodinates), (global coordinates), H_params]
-            H_params_crack_region.append([[float(x),float(y)], [float(x),float(y)], H_op.tolist()])#np.abs(H_op)])
+            H_params_crack_region_ = H_op.tolist()
+            H_params_crack_region.append([[float(x),float(y)], [float(x),float(y)], H_params_crack_region_])
+            #H_params_crack_region.append([[float(x),float(y)], [float(x),float(y)], H_op.tolist()])#np.abs(H_op)])
             
             #Computing 2dofs for the current pixel(point) of the skeleton
             two_dofs_xy_global = np.mean((set_crack_edge_0_op-set_crack_edge_0[:,:2]), axis=0)
-            two_dofs_global.append([[float(x),float(y)],[float(x),float(y)], two_dofs_xy_global.tolist()])
+            two_dofs_global_ = two_dofs_xy_global.tolist()
+            two_dofs_global.append([[float(x),float(y)],[float(x),float(y)], two_dofs_global_])
+            #two_dofs_global.append([[float(x),float(y)],[float(x),float(y)], two_dofs_xy_global.tolist()])
         
         #Transformation H matrix as 3x3 size. 
         H_loc = H_from_transformation(H_op_loc, H_type)   
@@ -645,27 +682,36 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
         set_crack_edge_0_op_loc  = set_crack_edge_0_op_loc[:2].T
         
         #Concatenate transformed edge 0 (select just the transformation of the closest point to the x,y)
-        crack_edge_transf_loc = np.concatenate((crack_edge_transf_loc, (set_crack_edge_0_op_loc[0].reshape(-1,2))+mean_edge_0))
+        crack_edge_transf_loc_ = (set_crack_edge_0_op_loc[0].reshape(-1,2))+mean_edge_0
+        crack_edge_transf_loc = np.concatenate((crack_edge_transf_loc, crack_edge_transf_loc_))
+        #crack_edge_transf_loc = np.concatenate((crack_edge_transf_loc, (set_crack_edge_0_op_loc[0].reshape(-1,2))+mean_edge_0))
         
         #Append H_params for point x,y in skeleton in the region [(local coodinates), (global coordinates), H_params]
-        H_params_crack_region_loc.append([[float(x),float(y)], [float(x),float(y)], H_op_loc.tolist()])#np.abs(H_op)])
+        H_params_crack_region_loc_ = H_op_loc.tolist()
+        H_params_crack_region_loc.append([[float(x),float(y)], [float(x),float(y)], H_params_crack_region_loc_])
+        #H_params_crack_region_loc.append([[float(x),float(y)], [float(x),float(y)], H_op_loc.tolist()])#np.abs(H_op)])
 
         #Computing 2dofs for the current pixel(point) of the skeleton
         two_dofs_xy_local = np.mean((set_crack_edge_0_op_loc-set_crack_edge_0_loc[:,:2]), axis=0)
-        two_dofs_local.append([[float(x),float(y)],[float(x),float(y)], two_dofs_xy_local.tolist()])
+        two_dofs_local_ = two_dofs_xy_local.tolist()
+        two_dofs_local.append([[float(x),float(y)],[float(x),float(y)], two_dofs_local_])
+        #two_dofs_local.append([[float(x),float(y)],[float(x),float(y)], two_dofs_xy_local.tolist()])
         
         #This contains the transformations globally and locally
         H_params_crack_region_dict[(x,y)] = (H_op, H_op_loc)
         
         pbar.update()
         
-        tfi = time.time()
-        
+        tfi = time.time()        
         time_iteration.append([[float(x),float(y)],[float(x),float(y)], tfi-t0i])
         
         #If monte_carlo is true, just sample randomly one point and break the loop.
         if monte_carlo:
-            break       
+            break
+
+        #Update last sk pt where kin was computed. When overlaping is given
+        if window_overlap is not None:
+            last_x, last_y = x, y
         
     
     pbar.close()

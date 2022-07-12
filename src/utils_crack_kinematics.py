@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import pylab
 import cv2
 
-def find_kinematics_patch_finite(data_path, mask_name, sk_pt=None, size=(256,256), mmpx=None, k_neighboors=50, m=1., l=4, k_n_normal_feature=10, omega=0., edges=False, normals = False, make_plots_local=True, make_plots_global = False, eta = 1.):
+def find_kinematics_patch_finite(data_path, mask_name, sk_pt=None, size=(256,256), mmpx=None, k_neighboors=50, m=1., l=4, k_n_normal_feature=10, omega=0., edges=False, normals = False, make_plots_local=True, make_plots_global = False, eta = 1., window_overlap=None):
     """
     Computes the kinematics for a image patch extracted from a full image of a crack pattern using finite edges approach.
     Prints also the value for the clicked point.
@@ -37,7 +37,7 @@ def find_kinematics_patch_finite(data_path, mask_name, sk_pt=None, size=(256,256
     """
 
     patch_name, sk_pt = crop_patch(data_path, mask_name, sk_pt = sk_pt, size=size, return_patch=False)
-    crack_kinematic_dic  = find_crack_kinematics(data_path, patch_name, k_neighboors=k_neighboors, m=m, l=l, k_n_normal_feature=k_n_normal_feature, omega=omega, edges=edges, normals = normals, make_plots_local=make_plots_local, make_plots_global = make_plots_global, eta =eta)
+    crack_kinematic_dic  = find_crack_kinematics(data_path, patch_name, k_neighboors=k_neighboors, m=m, l=l, k_n_normal_feature=k_n_normal_feature, omega=omega, edges=edges, normals = normals, make_plots_local=make_plots_local, make_plots_global = make_plots_global, eta =eta, window_overlap=window_overlap)
     _ = compute_kinematic_mean(data_path, patch_name, [1.,1.,4,10,0.], crack_kinematic=None, full_edges=False, local_trans = True, abs_disp = True, use_eta = True)
 
 

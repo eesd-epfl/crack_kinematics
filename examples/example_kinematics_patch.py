@@ -25,7 +25,7 @@ mask_name = "SVS_2_LS43_to_LS44_RS6_0000_0_mask.png"
 
 #If sk pt is given (in which kinematics is wanted)
 #For finite edge segments
-find_kinematics_patch_finite(data_path, mask_name, sk_pt = [1753,2140], size=(256,256), mmpx=.43, k_neighboors=50, m=1., l=4, k_n_normal_feature=10, omega=0., edges=False, normals = False, make_plots_local=True, make_plots_global = False, eta = 1.)
+find_kinematics_patch_finite(data_path, mask_name, sk_pt = [1753,2140], size=(256,256), mmpx=.43, k_neighboors=50, m=1., l=4, k_n_normal_feature=10, omega=0., edges=False, normals = False, make_plots_local=True, make_plots_global = False, eta = 1., window_overlap=10)
 #For full edge segments (works if only a single crack is seen)
 find_kinematics_patch_full_edge(data_path, mask_name, sk_pt = [1753,2140], size=(256,256), mmpx=.43, k_n_normal_feature=10, omega = 0., edges=False, normals=False, make_plots_local=True, make_plots_global = True)
 
