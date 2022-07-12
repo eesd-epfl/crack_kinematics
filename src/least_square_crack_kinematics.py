@@ -28,7 +28,7 @@ from endpoint_branchpoint import find_end_points
 from tqdm import tqdm
 import os
 import json
-from tools_crack_kinematic import H_from_transformation, find_dir_nor, find_skeleton_intersections,plot_edges_kinematic,plot_kinematic,plot_two_dofs_kinematic,plot_n_t_kinematic
+from tools_crack_kinematic import H_from_transformation, find_dir_nor, find_skeleton_intersections,plot_edges_kinematic,plot_kinematic,plot_two_dofs_kinematic,plot_n_t_kinematic, _getnodes
 from tools_least_squares import run_crack_adjustment
 from optimizer import kinematic_adjustment_lambda_based, kinematic_adjustment_pareto_based
 from scipy.signal import argrelextrema
@@ -318,8 +318,10 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
         skl_end_points = np.array(np.where(skl_end_points_mask>0)).T           
         
         #Finding junctions in the skeleton
-        skl_junct_points_mask = find_skeleton_intersections(skl)
-        skl_junct_points = np.array(np.where(skl_junct_points_mask>0)).T
+        #skl_junct_points_mask = find_skeleton_intersections(skl)
+        #skl_junct_points = np.array(np.where(skl_junct_points_mask>0)).T
+        skl_junct_points = _getnodes(skl, extremes=False) #!more efficient
+
         
         #Divide contours in edges taking into account the endpoints and intersections.
         #Contours are divided in the closest point to either intersections or endpoints.
