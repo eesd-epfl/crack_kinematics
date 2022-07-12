@@ -380,6 +380,10 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
             crack_contour = [crack_contour[i] for i in range(len(crack_contour)) if i not in ind_clossest_cnt]
             #Adding new contours to crack_countour initial list after deleting the divided contour
             crack_contour = crack_contour + new_crack_contour
+
+        #Get rid off small detected contours
+        crack_contour = [cr_ct for cr_ct in crack_contour if len(cr_ct)>10]
+
         #Intersection points
         for ep in skl_end_points:
             min_dist_c_ep = []
@@ -417,7 +421,10 @@ def find_crack_kinematics(data_path, mask_name, k_neighboors=30, m=10, l=5, k_n_
             crack_contour_div1 = full_contour[ind_min_dist2ep:]
             #Adding new contours to crack_countour initial list after deleting the divided contour
             crack_contour.append(crack_contour_div0)
-            crack_contour.append(crack_contour_div1)            
+            crack_contour.append(crack_contour_div1)
+
+            #Get rid off small detected contours
+            crack_contour = [cr_ct for cr_ct in crack_contour if len(cr_ct)>10]            
                 
         
         plt.figure()
