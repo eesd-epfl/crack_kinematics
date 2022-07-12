@@ -22,6 +22,7 @@ import json
 import numpy as np
 import pylab
 import scipy.stats as stats
+import scipy.ndimage as spim
 
 def H_from_transformation(H_op, H_type):
     """
@@ -319,6 +320,69 @@ def find_skeleton_intersections(skl):
     inters = inters>0
     
     return inters
+
+def _getnodes(Xin, extremes=True):
+    # hits
+    structures = []
+ 
+    if extremes:
+        structures.append([[1, 0, 0], [0, 1, 0], [0, 0, 0]])
+        structures.append([[0, 1, 0], [0, 1, 0], [0, 0, 0]])
+        structures.append([[0, 0, 1], [0, 1, 0], [0, 0, 0]])
+        structures.append([[0, 0, 0], [0, 1, 1], [0, 0, 0]])
+        structures.append([[0, 0, 0], [0, 1, 0], [0, 0, 1]])
+        structures.append([[0, 0, 0], [0, 1, 0], [0, 1, 0]])
+        structures.append([[0, 0, 0], [0, 1, 0], [1, 0, 0]])
+        structures.append([[0, 0, 0], [1, 1, 0], [0, 0, 0]])
+ 
+    # structures.append([[1, 1, 1], [0, 1, 1], [1, 0, 0]])
+    # structures.append([[1, 1, 1], [1, 1, 0], [0, 0, 1]])
+    # structures.append([[1, 0, 0], [0, 1, 1], [1, 1, 1]])
+    # structures.append([[0, 0, 1], [1, 1, 0], [1, 1, 1]])
+ 
+    crossings = [[0, 1, 0, 1, 0, 0, 1, 0], [0, 0, 1, 0, 1, 0, 0, 1], [1, 0, 0, 1, 0, 1, 0, 0],
+                 [0, 1, 0, 0, 1, 0, 1, 0], [0, 0, 1, 0, 0, 1, 0, 1], [1, 0, 0, 1, 0, 0, 1, 0],
+                 [0, 1, 0, 0, 1, 0, 0, 1], [1, 0, 1, 0, 0, 1, 0, 0], [0, 1, 0, 0, 0, 1, 0, 1],
+                 [0, 1, 0, 1, 0, 0, 0, 1], [0, 1, 0, 1, 0, 1, 0, 0], [0, 0, 0, 1, 0, 1, 0, 1],
+                 [1, 0, 1, 0, 0, 0, 1, 0], [1, 0, 1, 0, 1, 0, 0, 0], [0, 0, 1, 0, 1, 0, 1, 0],
+                 [1, 0, 0, 0, 1, 0, 1, 0], [1, 0, 0, 1, 1, 1, 0, 0], [0, 0, 1, 0, 0, 1, 1, 1],
+                 [1, 1, 0, 0, 1, 0, 0, 1], [0, 1, 1, 1, 0, 0, 1, 0], [1, 0, 1, 1, 0, 0, 1, 0],
+                 [1, 0, 1, 0, 0, 1, 1, 0], [1, 0, 1, 1, 0, 1, 1, 0], [0, 1, 1, 0, 1, 0, 1, 1],
+                 [1, 1, 0, 1, 1, 0, 1, 0], [1, 1, 0, 0, 1, 0, 1, 0], [0, 1, 1, 0, 1, 0, 1, 0],
+                 [0, 0, 1, 0, 1, 0, 1, 1], [1, 0, 0, 1, 1, 0, 1, 0], [1, 0, 1, 0, 1, 1, 0, 1],
+                 [1, 0, 1, 0, 1, 1, 0, 0], [1, 0, 1, 0, 1, 0, 0, 1], [0, 1, 0, 0, 1, 0, 1, 1],
+                 [0, 1, 1, 0, 1, 0, 0, 1], [1, 1, 0, 1, 0, 0, 1, 0], [0, 1, 0, 1, 1, 0, 1, 0],
+                 [0, 0, 1, 0, 1, 1, 0, 1], [1, 0, 1, 0, 0, 1, 0, 1], [1, 0, 0, 1, 0, 1, 1, 0],
+                 [1, 0, 1, 1, 0, 1, 0, 0], [0, 1, 1, 1, 1, 0, 0, 1], [1, 1, 0, 1, 0, 1, 1, 1],
+                 [1, 1, 1, 1, 0, 1, 0, 0], [0, 1, 0, 0, 1, 1, 1, 1]];
+ 
+    for i in range(len(crossings)):
+        A = crossings[i]
+        B = np.ones((3, 3))
+ 
+        B[1, 0] = A[0]
+        B[0, 0] = A[1]
+        B[0, 1] = A[2]
+        B[0, 2] = A[3]
+        B[1, 2] = A[4]
+        B[2, 2] = A[5]
+        B[2, 1] = A[6]
+        B[2, 0] = A[7]
+ 
+        structures.append(B.tolist())
+ 
+    nodes = []
+    for i in range(len(structures)):
+        structure1 = np.array(structures[i])
+        X0 = spim.binary_hit_or_miss(Xin, structure1=structure1).astype(int)
+        r0, c0 = np.nonzero(X0 == 1)
+ 
+        for j in range(len(r0)):
+            nodes.append([r0[j], c0[j]])
+ 
+    nodes = np.array(nodes)
+ 
+    return nodes
 
 def plot_edges_kinematic(data_path, mask_name, crack_kinematic, dir_save='../results/', plt_skeleton = True, local_trans = True):
     """
