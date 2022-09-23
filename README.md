@@ -1,4 +1,4 @@
-# Crack Kinematics
+# Crack Kinematics (tested on ubuntu 18.04 lts)
 This repository contains the codes for computing crack kinematics using a binary mask that represents a segmented crack. The methodoly hereby implementes was presented in the paper ["Determing crack kinematics from imaged crack patterns"](https://doi.org/10.1016/j.conbuildmat.2022.128054) by Pantoja-Rosero et., al.
 
 
